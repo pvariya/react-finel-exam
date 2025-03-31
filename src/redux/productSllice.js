@@ -13,7 +13,7 @@ export const getProducts = createAsyncThunk("product/getProducts", async () => {
     }
 });
 export const fetchProductDetails = createAsyncThunk(
-    "products/fetchProductDetails",
+    "product/fetchProductDetails",
     async (id) => {
         const response = await axios.get(`http://localhost:3000/products/${id}`);
         return response.data;
@@ -46,6 +46,7 @@ const productSlice = createSlice({
                 state.error = null;
             })
             .addCase(fetchProductDetails.fulfilled, (state, action) => {
+                console.log("Fetched product details:", action.payload);
                 state.loading = false;
                 state.selectedProduct = action.payload;
             })

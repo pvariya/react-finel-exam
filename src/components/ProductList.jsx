@@ -29,7 +29,9 @@ const ProductList = () => {
                   <p className="card-text">{product.description}</p>
                   <button
                     className="btn btn-primary"
-                    onClick={() => navigate(`/product/${product.id}`)}
+                    onClick={() => navigate(`/products/${product.id}`)
+                }
+              
                   >
                     View Details
                   </button>
