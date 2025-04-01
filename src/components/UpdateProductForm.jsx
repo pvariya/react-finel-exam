@@ -1,43 +1,31 @@
-import {  useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { addProduct } from '../redux/productSllice';
+import  { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate, useParams } from "react-router";
+import { updateProduct } from "../redux/productSllice";
 
 
-function AddProducts() {
-const dispach = useDispatch()
-const navigate = useNavigate()
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState('');
-  const [image, setImage] = useState('');
-  const [description, setDescription] = useState('');
+const UpdateProductForm = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const location = useLocation();
+  const product = location.state?.product;
+const navigator =useNavigate()
+  // Initialize state with existing product values
+  const [title, setTitle] = useState(product?.title || "");
+  const [price, setPrice] = useState(product?.price || "");
+  const [image, setImage] = useState(product?.image || "");
+  const [description, setDescription] = useState(product?.description || "");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!title || !price || !image || !description) {
-      alert('Please fill out all fields.');
-      return;
-    }
-    const newProduct = {
-      title,
-      price,
-      image,
-      description,
-    };
-    console.log('New Product:', newProduct);
-    dispach(addProduct(newProduct))
-    alert('Product added successfully!');
-    navigate('/')
-    setTitle('');
-    setPrice('');
-    setImage('');
-    setDescription('');
+  const handleUpdate = () => {
+    dispatch(updateProduct({ id, updatedData: { title: title, price,image,description } }));
+    alert("Updated")
+    navigator("/")
   };
 
   return (
-    <div className="container mt-5">
+      <div className="container mt-5">
       <h2 className="text-center mb-4">Add a New Product</h2>
-      <form onSubmit={handleSubmit} className="row g-3">
+      <form className="row g-3">
         <div className="col-md-6">
           <label htmlFor="title" className="form-label">Title</label>
           <input
@@ -86,11 +74,11 @@ const navigate = useNavigate()
         </div>
 
         <div className="col-12">
-          <button type="submit" className="btn btn-primary w-100">Add Product</button>
+        <button onClick={handleUpdate}>Update</button>
         </div>
       </form>
     </div>
   );
-}
+};
 
-export default AddProducts;
+export default UpdateProductForm;

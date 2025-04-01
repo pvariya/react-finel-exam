@@ -1,10 +1,11 @@
 {
-    "products": [
-        {
-        "title": "Product 1",
-        "price": "29.99",
-        "image": "https://picsum.photos/200/300",
-        "description": "Description of product 1."
-        }
-    ]
+  "products": [
+    {
+      "title": "deep gohil ",
+      "price": "234",
+      "image": "https://picsum.photos/200",
+      "description": "deep's product",
+      "id": "48ef"
+    }
+  ]
 }
