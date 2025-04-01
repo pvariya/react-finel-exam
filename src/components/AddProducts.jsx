@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 function AddProducts() {
-  // State to store form data
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState('');
   const [description, setDescription] = useState('');
 
-  // Handle form submission
+useEffect(()=>{
+  dispatch();
+})
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Form validation (you can customize this based on your needs)
+
     if (!title || !price || !image || !description) {
       alert('Please fill out all fields.');
       return;
@@ -24,10 +31,9 @@ function AddProducts() {
       description,
     };
 
-    // Here, you can handle the new product (e.g., sending it to an API or Redux store)
     console.log('New Product:', newProduct);
 
-    // Optionally, reset the form after submission
+
     setTitle('');
     setPrice('');
     setImage('');
